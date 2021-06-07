@@ -137,7 +137,7 @@ impl Object {
         };
 
         if !properties.is_undefined() {
-            return Object::define_properties(&Value::Undefined, &[obj, properties], context);
+            return Self::define_properties(&Value::Undefined, &[obj, properties], context);
         }
 
         Ok(obj)

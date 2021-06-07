@@ -323,7 +323,7 @@ impl Set {
 
         let mut index = 0;
 
-        while index < Set::get_size(this, context)? {
+        while index < Self::get_size(this, context)? {
             let arguments = if let Value::Object(ref object) = this {
                 let object = object.borrow();
                 if let Some(set) = object.as_set_ref() {
@@ -404,7 +404,7 @@ impl Set {
     }
 
     fn size_getter(this: &Value, _: &[Value], context: &mut Context) -> Result<Value> {
-        Set::get_size(this, context).map(Value::from)
+        Self::get_size(this, context).map(Value::from)
     }
 
     /// Helper function to get the size of the set.

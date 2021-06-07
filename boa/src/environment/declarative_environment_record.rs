@@ -42,7 +42,7 @@ impl DeclarativeEnvironmentRecord {
     #[allow(clippy::new_ret_no_self)]
     pub fn new(env: Option<Environment>) -> Environment {
         let _timer = BoaProfiler::global().start_event("new_declarative_environment", "env");
-        let boxed_env = Box::new(DeclarativeEnvironmentRecord {
+        let boxed_env = Box::new(Self {
             env_rec: FxHashMap::default(),
             outer_env: env,
         });

@@ -5,6 +5,40 @@
 //!  - [Unicode® Standard Annex #31][uax31]
 //!
 //! [uax31]: http://unicode.org/reports/tr31
+#![doc(
+    html_logo_url = "https://raw.githubusercontent.com/jasonwilliams/boa/master/assets/logo.svg",
+    html_favicon_url = "https://raw.githubusercontent.com/jasonwilliams/boa/master/assets/logo.svg"
+)]
+#![deny(
+    clippy::use_self,
+    unused_qualifications,
+    clippy::all,
+    unused_qualifications,
+    unused_import_braces,
+    unused_lifetimes,
+    unreachable_pub,
+    trivial_numeric_casts,
+    // rustdoc,
+    missing_debug_implementations,
+    missing_copy_implementations,
+    deprecated_in_future,
+    meta_variable_misuse,
+    non_ascii_idents,
+    rust_2018_compatibility,
+    rust_2018_idioms,
+    future_incompatible,
+    nonstandard_style,
+)]
+#![warn(clippy::perf, clippy::single_match_else, clippy::dbg_macro)]
+#![allow(
+    clippy::missing_inline_in_public_items,
+    clippy::cognitive_complexity,
+    clippy::must_use_candidate,
+    clippy::missing_errors_doc,
+    clippy::as_conversions,
+    clippy::let_unit_value,
+    missing_doc_code_examples
+)]
 
 mod tables;
 #[cfg(test)]

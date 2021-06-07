@@ -247,7 +247,7 @@ where
                     }
                     let _ = cursor.next()?.expect("'||' expected");
                     previous = PreviousExpr::Logical;
-                    let rhs = ShortCircuitExpression::with_previous(
+                    let rhs = Self::with_previous(
                         self.allow_in,
                         self.allow_yield,
                         self.allow_await,

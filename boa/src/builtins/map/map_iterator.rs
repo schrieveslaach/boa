@@ -32,7 +32,7 @@ impl MapIterator {
 
     /// Constructs a new `MapIterator`, that will iterate over `map`, starting at index 0
     fn new(map: Value, kind: MapIterationKind) -> Self {
-        MapIterator {
+        Self {
             iterated_map: map,
             map_next_index: 0,
             map_iteration_kind: kind,

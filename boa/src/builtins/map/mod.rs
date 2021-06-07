@@ -365,7 +365,7 @@ impl Map {
 
         let mut index = 0;
 
-        while index < Map::get_size(this, context)? {
+        while index < Self::get_size(this, context)? {
             let arguments = if let Value::Object(ref object) = this {
                 let object = object.borrow();
                 if let Some(map) = object.as_map_ref() {

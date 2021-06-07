@@ -34,7 +34,7 @@ impl SetIterator {
 
     /// Constructs a new `SetIterator`, that will iterate over `set`, starting at index 0
     fn new(set: Value, kind: SetIterationKind) -> Self {
-        SetIterator {
+        Self {
             iterated_set: set,
             next_index: 0,
             iteration_kind: kind,

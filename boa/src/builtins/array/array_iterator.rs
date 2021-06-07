@@ -31,7 +31,7 @@ impl ArrayIterator {
     pub(crate) const NAME: &'static str = "ArrayIterator";
 
     fn new(array: Value, kind: ArrayIterationKind) -> Self {
-        ArrayIterator {
+        Self {
             array,
             kind,
             next_index: 0,

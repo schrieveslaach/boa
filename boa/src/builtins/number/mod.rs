@@ -998,7 +998,7 @@ impl Number {
         Ok(Value::from(match args.get(0) {
             Some(Value::Integer(_)) => true,
             Some(Value::Rational(number)) if Self::is_float_integer(*number) => {
-                number.abs() <= Number::MAX_SAFE_INTEGER
+                number.abs() <= Self::MAX_SAFE_INTEGER
             }
             _ => false,
         }))
@@ -1014,7 +1014,7 @@ impl Number {
     pub(crate) fn is_integer(val: &Value) -> bool {
         match val {
             Value::Integer(_) => true,
-            Value::Rational(number) => Number::is_float_integer(*number),
+            Value::Rational(number) => Self::is_float_integer(*number),
             _ => false,
         }
     }

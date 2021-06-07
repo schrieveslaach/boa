@@ -224,11 +224,11 @@ impl From<Const> for Node {
 
 impl Node {
     /// Returns a node ordering based on the hoistability of each node.
-    pub(crate) fn hoistable_order(a: &Node, b: &Node) -> Ordering {
+    pub(crate) fn hoistable_order(a: &Self, b: &Self) -> Ordering {
         match (a, b) {
-            (Node::FunctionDecl(_), Node::FunctionDecl(_)) => Ordering::Equal,
-            (_, Node::FunctionDecl(_)) => Ordering::Greater,
-            (Node::FunctionDecl(_), _) => Ordering::Less,
+            (Self::FunctionDecl(_), Self::FunctionDecl(_)) => Ordering::Equal,
+            (_, Self::FunctionDecl(_)) => Ordering::Greater,
+            (Self::FunctionDecl(_), _) => Ordering::Less,
 
             (_, _) => Ordering::Equal,
         }

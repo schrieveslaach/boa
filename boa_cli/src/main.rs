@@ -1,3 +1,5 @@
+//! Boa Command Line Interface and REPL
+
 #![deny(
     unused_qualifications,
     clippy::all,

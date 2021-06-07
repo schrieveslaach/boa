@@ -182,14 +182,14 @@ impl BigInt {
 
         if bits > 0
             && modulo
-                >= BigInt::from(2)
-                    .pow(&BigInt::from(bits as i64 - 1))
+                >= Self::from(2)
+                    .pow(&Self::from(bits as i64 - 1))
                     .expect("the exponent must be positive")
         {
             Ok(Value::from(
                 modulo
-                    - BigInt::from(2)
-                        .pow(&BigInt::from(bits as i64))
+                    - Self::from(2)
+                        .pow(&Self::from(bits as i64))
                         .expect("the exponent must be positive"),
             ))
         } else {
@@ -215,7 +215,7 @@ impl BigInt {
     /// This function expects the same arguments as `as_uint_n` and wraps the value of a `BigInt`.
     /// Additionally to the wrapped unsigned value it returns the converted `bits` argument, so it
     /// can be reused from the `as_int_n` method.
-    fn calculate_as_uint_n(args: &[Value], context: &mut Context) -> Result<(BigInt, u32)> {
+    fn calculate_as_uint_n(args: &[Value], context: &mut Context) -> Result<(Self, u32)> {
         use std::convert::TryFrom;
 
         let undefined_value = Value::undefined();
@@ -230,8 +230,8 @@ impl BigInt {
 
         Ok((
             bigint.as_inner().clone().mod_floor(
-                &BigInt::from(2)
-                    .pow(&BigInt::from(bits as i64))
+                &Self::from(2)
+                    .pow(&Self::from(bits as i64))
                     .expect("the exponent must be positive"),
             ),
             bits,

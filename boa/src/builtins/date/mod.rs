@@ -420,7 +420,7 @@ impl Date {
     /// [spec]: https://tc39.es/ecma262/#sec-date-constructor
     /// [mdn]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/Date
     pub(crate) fn make_date_now(this: &Value) -> Value {
-        let date = Date::default();
+        let date = Self::default();
         this.set_data(ObjectData::Date(date));
         this.clone()
     }
@@ -458,7 +458,7 @@ impl Date {
         };
 
         let tv = tv.filter(|time| Self::time_clip(time.timestamp_millis() as f64).is_some());
-        let date = Date(tv);
+        let date = Self(tv);
         this.set_data(ObjectData::Date(date));
         Ok(this.clone())
     }
@@ -498,7 +498,7 @@ impl Date {
 
         // If any of the args are infinity or NaN, return an invalid date.
         if !check_normal_opt!(year, month, day, hour, min, sec, milli) {
-            let date = Date(None);
+            let date = Self(None);
             this.set_data(ObjectData::Date(date));
             return Ok(this.clone());
         }
@@ -523,7 +523,7 @@ impl Date {
             .map(|local| local.naive_utc())
             .filter(|time| Self::time_clip(time.timestamp_millis() as f64).is_some());
 
-        let date = Date(final_date);
+        let date = Self(final_date);
         this.set_data(ObjectData::Date(date));
         Ok(this.clone())
     }

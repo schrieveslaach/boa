@@ -16,7 +16,7 @@ impl BigInt {
     #[inline]
     pub(crate) fn from_string(string: &str, context: &mut Context) -> Result<Self, Value> {
         if string.trim().is_empty() {
-            return Ok(BigInt::from(0));
+            return Ok(Self::from(0));
         }
 
         let mut radix = 10;
@@ -34,7 +34,7 @@ impl BigInt {
             string = &string[2..];
         }
 
-        BigInt::from_string_radix(string, radix).ok_or_else(|| {
+        Self::from_string_radix(string, radix).ok_or_else(|| {
             context.construct_syntax_error(format!("cannot convert {} to a BigInt", string))
         })
     }
@@ -62,21 +62,21 @@ impl BigInt {
     #[inline]
     pub(crate) fn from_str(string: &str) -> Option<Self> {
         match num_bigint::BigInt::from_str(string) {
-            Ok(bigint) => Some(BigInt(bigint)),
+            Ok(bigint) => Some(Self(bigint)),
             Err(_) => None,
         }
     }
 }
 
 impl From<i64> for BigInt {
-    fn from(n: i64) -> BigInt {
-        BigInt(num_bigint::BigInt::from(n))
+    fn from(n: i64) -> Self {
+        Self(num_bigint::BigInt::from(n))
     }
 }
 
 impl From<i32> for BigInt {
-    fn from(n: i32) -> BigInt {
-        BigInt(num_bigint::BigInt::from(n))
+    fn from(n: i32) -> Self {
+        Self(num_bigint::BigInt::from(n))
     }
 }
 
@@ -100,7 +100,7 @@ impl TryFrom<f64> for BigInt {
             return Err(TryFromF64Error);
         }
         match num_bigint::BigInt::from_f64(n) {
-            Some(bigint) => Ok(BigInt(bigint)),
+            Some(bigint) => Ok(Self(bigint)),
             None => Err(TryFromF64Error),
         }
     }

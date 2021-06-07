@@ -49,7 +49,7 @@ impl GlobalEnvironmentRecord {
             outer_env: None,
         };
 
-        Gc::new(GcCell::new(Box::new(GlobalEnvironmentRecord {
+        Gc::new(GcCell::new(Box::new(Self {
             object_record: obj_rec,
             global_this_binding: this_value,
             declarative_record: dcl_rec,

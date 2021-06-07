@@ -313,52 +313,52 @@ pub enum PropertyKey {
 
 impl From<RcString> for PropertyKey {
     #[inline]
-    fn from(string: RcString) -> PropertyKey {
+    fn from(string: RcString) -> Self {
         if let Ok(index) = string.parse() {
-            PropertyKey::Index(index)
+            Self::Index(index)
         } else {
-            PropertyKey::String(string)
+            Self::String(string)
         }
     }
 }
 
 impl From<&str> for PropertyKey {
     #[inline]
-    fn from(string: &str) -> PropertyKey {
+    fn from(string: &str) -> Self {
         if let Ok(index) = string.parse() {
-            PropertyKey::Index(index)
+            Self::Index(index)
         } else {
-            PropertyKey::String(string.into())
+            Self::String(string.into())
         }
     }
 }
 
 impl From<String> for PropertyKey {
     #[inline]
-    fn from(string: String) -> PropertyKey {
+    fn from(string: String) -> Self {
         if let Ok(index) = string.parse() {
-            PropertyKey::Index(index)
+            Self::Index(index)
         } else {
-            PropertyKey::String(string.into())
+            Self::String(string.into())
         }
     }
 }
 
 impl From<Box<str>> for PropertyKey {
     #[inline]
-    fn from(string: Box<str>) -> PropertyKey {
+    fn from(string: Box<str>) -> Self {
         if let Ok(index) = string.parse() {
-            PropertyKey::Index(index)
+            Self::Index(index)
         } else {
-            PropertyKey::String(string.into())
+            Self::String(string.into())
         }
     }
 }
 
 impl From<RcSymbol> for PropertyKey {
     #[inline]
-    fn from(symbol: RcSymbol) -> PropertyKey {
-        PropertyKey::Symbol(symbol)
+    fn from(symbol: RcSymbol) -> Self {
+        Self::Symbol(symbol)
     }
 }
 
@@ -366,9 +366,9 @@ impl fmt::Display for PropertyKey {
     #[inline]
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         match self {
-            PropertyKey::String(ref string) => string.fmt(f),
-            PropertyKey::Symbol(ref symbol) => symbol.fmt(f),
-            PropertyKey::Index(index) => index.fmt(f),
+            Self::String(ref string) => string.fmt(f),
+            Self::Symbol(ref symbol) => symbol.fmt(f),
+            Self::Index(index) => index.fmt(f),
         }
     }
 }
@@ -409,28 +409,28 @@ impl From<PropertyKey> for Value {
 
 impl From<u8> for PropertyKey {
     fn from(value: u8) -> Self {
-        PropertyKey::Index(value.into())
+        Self::Index(value.into())
     }
 }
 
 impl From<u16> for PropertyKey {
     fn from(value: u16) -> Self {
-        PropertyKey::Index(value.into())
+        Self::Index(value.into())
     }
 }
 
 impl From<u32> for PropertyKey {
     fn from(value: u32) -> Self {
-        PropertyKey::Index(value)
+        Self::Index(value)
     }
 }
 
 impl From<usize> for PropertyKey {
     fn from(value: usize) -> Self {
         if let Ok(index) = u32::try_from(value) {
-            PropertyKey::Index(index)
+            Self::Index(index)
         } else {
-            PropertyKey::String(RcString::from(value.to_string()))
+            Self::String(RcString::from(value.to_string()))
         }
     }
 }
@@ -438,9 +438,9 @@ impl From<usize> for PropertyKey {
 impl From<isize> for PropertyKey {
     fn from(value: isize) -> Self {
         if let Ok(index) = u32::try_from(value) {
-            PropertyKey::Index(index)
+            Self::Index(index)
         } else {
-            PropertyKey::String(RcString::from(value.to_string()))
+            Self::String(RcString::from(value.to_string()))
         }
     }
 }
@@ -448,9 +448,9 @@ impl From<isize> for PropertyKey {
 impl From<i32> for PropertyKey {
     fn from(value: i32) -> Self {
         if let Ok(index) = u32::try_from(value) {
-            PropertyKey::Index(index)
+            Self::Index(index)
         } else {
-            PropertyKey::String(RcString::from(value.to_string()))
+            Self::String(RcString::from(value.to_string()))
         }
     }
 }
@@ -459,17 +459,17 @@ impl From<f64> for PropertyKey {
     fn from(value: f64) -> Self {
         use num_traits::cast::FromPrimitive;
         if let Some(index) = u32::from_f64(value) {
-            return PropertyKey::Index(index);
+            return Self::Index(index);
         }
 
-        PropertyKey::String(ryu_js::Buffer::new().format(value).into())
+        Self::String(ryu_js::Buffer::new().format(value).into())
     }
 }
 
 impl PartialEq<&str> for PropertyKey {
     fn eq(&self, other: &&str) -> bool {
         match self {
-            PropertyKey::String(ref string) => string == other,
+            Self::String(ref string) => string == other,
             _ => false,
         }
     }

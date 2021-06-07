@@ -76,7 +76,7 @@ impl fmt::Display for Break {
 }
 
 impl From<Break> for Node {
-    fn from(break_smt: Break) -> Node {
+    fn from(break_smt: Break) -> Self {
         Self::Break(break_smt)
     }
 }

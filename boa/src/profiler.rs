@@ -81,7 +81,7 @@ impl BoaProfiler {
         ()
     }
 
-    pub fn global() -> BoaProfiler {
-        BoaProfiler
+    pub fn global() -> Self {
+        Self
     }
 }

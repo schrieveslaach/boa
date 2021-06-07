@@ -123,9 +123,9 @@ impl Array {
             .unwrap_or_else(|| context.standard_objects().array_object().prototype());
         // Delegate to the appropriate constructor based on the number of arguments
         match args.len() {
-            0 => Ok(Array::construct_array_empty(prototype, context)),
-            1 => Array::construct_array_length(prototype, &args[0], context),
-            _ => Array::construct_array_values(prototype, args, context),
+            0 => Ok(Self::construct_array_empty(prototype, context)),
+            1 => Self::construct_array_length(prototype, &args[0], context),
+            _ => Self::construct_array_values(prototype, args, context),
         }
     }
 
@@ -136,7 +136,7 @@ impl Array {
     ///
     /// [spec]: https://tc39.es/ecma262/#sec-array-constructor-array
     fn construct_array_empty(proto: GcObject, context: &mut Context) -> Value {
-        Array::array_create(0, Some(proto), context)
+        Self::array_create(0, Some(proto), context)
     }
 
     /// By length constructor for `Array`.
@@ -150,7 +150,7 @@ impl Array {
         length: &Value,
         context: &mut Context,
     ) -> Result<Value> {
-        let array = Array::array_create(0, Some(prototype), context);
+        let array = Self::array_create(0, Some(prototype), context);
 
         if !length.is_number() {
             array.set_property(0, DataDescriptor::new(length, Attribute::all()));
@@ -177,7 +177,7 @@ impl Array {
         context: &mut Context,
     ) -> Result<Value> {
         let items_len = items.len().try_into().map_err(interror_to_value)?;
-        let array = Array::array_create(items_len, Some(prototype), context);
+        let array = Self::array_create(items_len, Some(prototype), context);
 
         for (k, item) in items.iter().enumerate() {
             array.set_property(k, DataDescriptor::new(item.clone(), Attribute::all()));

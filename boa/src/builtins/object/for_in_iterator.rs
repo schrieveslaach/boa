@@ -29,7 +29,7 @@ impl ForInIterator {
     pub(crate) const NAME: &'static str = "ForInIterator";
 
     fn new(object: Value) -> Self {
-        ForInIterator {
+        Self {
             object,
             visited_keys: FxHashSet::default(),
             remaining_keys: VecDeque::default(),

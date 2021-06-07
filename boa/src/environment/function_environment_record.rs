@@ -67,7 +67,7 @@ impl FunctionEnvironmentRecord {
         binding_status: BindingStatus,
         new_target: Value,
     ) -> Environment {
-        let mut func_env = FunctionEnvironmentRecord {
+        let mut func_env = Self {
             declarative_record: DeclarativeEnvironmentRecord {
                 env_rec: FxHashMap::default(),
                 outer_env: outer, // this will come from Environment set as a private property of F - https://tc39.es/ecma262/#sec-ecmascript-function-objects

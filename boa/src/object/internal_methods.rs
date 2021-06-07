@@ -254,13 +254,13 @@ impl GcObject {
                 // 8.
                 if !current.configurable() {
                     if let (Some(current_get), Some(desc_get)) = (current.getter(), desc.getter()) {
-                        if !GcObject::equals(&current_get, &desc_get) {
+                        if !Self::equals(&current_get, &desc_get) {
                             return false;
                         }
                     }
 
                     if let (Some(current_set), Some(desc_set)) = (current.setter(), desc.setter()) {
-                        if !GcObject::equals(&current_set, &desc_set) {
+                        if !Self::equals(&current_set, &desc_set) {
                             return false;
                         }
                     }

@@ -233,7 +233,7 @@ impl RegExp {
             Ok(val) => val,
         };
 
-        let regexp = RegExp {
+        let regexp = Self {
             matcher,
             use_last_index: global || sticky,
             flags: sorted_flags.into_boxed_str(),

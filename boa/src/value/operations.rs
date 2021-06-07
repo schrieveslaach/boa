@@ -645,9 +645,9 @@ impl From<bool> for AbstractRelation {
     #[inline]
     fn from(value: bool) -> Self {
         if value {
-            AbstractRelation::True
+            Self::True
         } else {
-            AbstractRelation::False
+            Self::False
         }
     }
 }

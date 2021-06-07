@@ -31,7 +31,7 @@ pub struct ObjectEnvironmentRecord {
 impl ObjectEnvironmentRecord {
     #[allow(clippy::new_ret_no_self)]
     pub fn new(object: Value, environment: Option<Environment>) -> Environment {
-        Gc::new(GcCell::new(Box::new(ObjectEnvironmentRecord {
+        Gc::new(GcCell::new(Box::new(Self {
             bindings: object,
             outer_env: environment,
             /// Object Environment Records created for with statements (13.11)

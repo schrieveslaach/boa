@@ -305,6 +305,6 @@ pub(crate) enum InputElement {
 
 impl Default for InputElement {
     fn default() -> Self {
-        InputElement::RegExp
+        Self::RegExp
     }
 }

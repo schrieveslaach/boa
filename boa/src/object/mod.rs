@@ -540,8 +540,8 @@ impl Object {
 
     /// Similar to `Value::new_object`, but you can pass a prototype to create from, plus a kind
     #[inline]
-    pub fn with_prototype(proto: Value, data: ObjectData) -> Object {
-        let mut object = Object::new();
+    pub fn with_prototype(proto: Value, data: ObjectData) -> Self {
+        let mut object = Self::new();
         object.data = data;
         object.set_prototype_instance(proto);
         object

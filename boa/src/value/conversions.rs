@@ -25,8 +25,8 @@ impl From<Box<str>> for Value {
 
 impl From<&str> for Value {
     #[inline]
-    fn from(value: &str) -> Value {
-        Value::string(value)
+    fn from(value: &str) -> Self {
+        Self::string(value)
     }
 }
 
@@ -40,21 +40,21 @@ impl From<&Box<str>> for Value {
 impl From<char> for Value {
     #[inline]
     fn from(value: char) -> Self {
-        Value::string(value.to_string())
+        Self::string(value.to_string())
     }
 }
 
 impl From<RcString> for Value {
     #[inline]
     fn from(value: RcString) -> Self {
-        Value::String(value)
+        Self::String(value)
     }
 }
 
 impl From<RcSymbol> for Value {
     #[inline]
     fn from(value: RcSymbol) -> Self {
-        Value::Symbol(value)
+        Self::Symbol(value)
     }
 }
 
@@ -75,42 +75,42 @@ impl From<f64> for Value {
 
 impl From<u32> for Value {
     #[inline]
-    fn from(value: u32) -> Value {
+    fn from(value: u32) -> Self {
         if let Ok(integer) = i32::try_from(value) {
-            Value::integer(integer)
+            Self::integer(integer)
         } else {
-            Value::rational(value)
+            Self::rational(value)
         }
     }
 }
 
 impl From<i32> for Value {
-    fn from(value: i32) -> Value {
-        Value::integer(value)
+    fn from(value: i32) -> Self {
+        Self::integer(value)
     }
 }
 
 impl From<BigInt> for Value {
     fn from(value: BigInt) -> Self {
-        Value::bigint(value)
+        Self::bigint(value)
     }
 }
 
 impl From<RcBigInt> for Value {
     fn from(value: RcBigInt) -> Self {
-        Value::BigInt(value)
+        Self::BigInt(value)
     }
 }
 
 impl From<usize> for Value {
-    fn from(value: usize) -> Value {
-        Value::integer(value as i32)
+    fn from(value: usize) -> Self {
+        Self::integer(value as i32)
     }
 }
 
 impl From<bool> for Value {
     fn from(value: bool) -> Self {
-        Value::boolean(value)
+        Self::boolean(value)
     }
 }
 
@@ -142,21 +142,21 @@ where
         for (i, item) in value.into_iter().enumerate() {
             array.insert(i, DataDescriptor::new(item, Attribute::all()));
         }
-        Value::from(array)
+        Self::from(array)
     }
 }
 
 impl From<Object> for Value {
     fn from(object: Object) -> Self {
         let _timer = BoaProfiler::global().start_event("From<Object>", "value");
-        Value::object(object)
+        Self::object(object)
     }
 }
 
 impl From<GcObject> for Value {
     fn from(object: GcObject) -> Self {
         let _timer = BoaProfiler::global().start_event("From<GcObject>", "value");
-        Value::Object(object)
+        Self::Object(object)
     }
 }
 

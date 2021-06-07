@@ -39,11 +39,11 @@ where
     K: Hash + Eq,
 {
     pub fn new() -> Self {
-        OrderedMap(IndexMap::new())
+        Self(IndexMap::new())
     }
 
     pub fn with_capacity(capacity: usize) -> Self {
-        OrderedMap(IndexMap::with_capacity(capacity))
+        Self(IndexMap::with_capacity(capacity))
     }
 
     /// Return the number of key-value pairs in the map.

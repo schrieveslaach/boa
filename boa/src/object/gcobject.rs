@@ -760,7 +760,7 @@ impl GcObject {
     ///
     /// [spec]: https://tc39.es/ecma262/#sec-getmethod
     #[inline]
-    pub fn get_method<K>(&self, context: &mut Context, key: K) -> Result<Option<GcObject>>
+    pub fn get_method<K>(&self, context: &mut Context, key: K) -> Result<Option<Self>>
     where
         K: Into<PropertyKey>,
     {
@@ -805,7 +805,7 @@ impl GcObject {
             {
                 let mut object = object.get_prototype_of();
                 while let Some(object_prototype) = object.as_object() {
-                    if GcObject::equals(&prototype, &object_prototype) {
+                    if Self::equals(&prototype, &object_prototype) {
                         return Ok(true);
                     }
                     object = object_prototype.get_prototype_of();

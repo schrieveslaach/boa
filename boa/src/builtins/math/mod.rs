@@ -83,7 +83,7 @@ impl BuiltIn for Math {
             .function(Self::trunc, "trunc", 1)
             .property(
                 string_tag,
-                Math::NAME,
+                Self::NAME,
                 Attribute::READONLY | Attribute::NON_ENUMERABLE | Attribute::CONFIGURABLE,
             )
             .build();
